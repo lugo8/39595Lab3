@@ -11,6 +11,12 @@ namespace Student
 {
     class BishopPiece : public ChessPiece
     {
+    private:
+        Student::ChessBoard* board;
+    public:
+        BishopPiece(Student::ChessBoard _board, Color _color, int _row, int _col);
+        bool canMoveToLocation(int toRow, int toColumn);
+        const char *toString();
     };
 }
 

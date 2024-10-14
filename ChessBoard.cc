@@ -46,3 +46,82 @@ std::ostringstream ChessBoard::displayBoard()
 
     return outputString;
 }
+
+ChessBoard::ChessBoard(int numRow, int numCol)
+{
+    numRows = numRow;
+    numCols = numCol;
+
+    //Make vector into desired row by col matrix
+    board.resize(numRow);
+    for(int i = 0; i < numRow; i++)
+    {
+        board[i].resize(numCol);
+    }
+
+    //Initialize each piece on the board to NULL
+    for(int row = 0; row < numRow; row++)
+    {
+        for(int col = 0; col < numCol; col++)
+        {
+            board[row][col] = NULL;
+        }
+    }
+}
+
+void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startColumn)
+{
+    //Remove peice in startRow, startCol if not NULL
+    if(board[startRow][startColumn] != NULL)
+    {
+        delete board[startRow][startColumn];
+        board[startRow][startColumn] = NULL;
+    }
+
+    ChessPiece* piece;
+
+    if(ty == Pawn)
+    {
+        //TODO: make this work with pawn's constructor
+        piece = new PawnPiece();
+    }
+
+    if(ty == Rook)
+    {
+        //TODO: make this work with rook's constructor
+        piece = new RookPiece();
+    }
+
+    if(ty == Bishop)
+    {
+        //TODO: make this work with bishop's constructor
+        piece = new BishopPiece();
+    }
+
+    if(ty == King)
+    {
+        //TODO: make this work with king's constructor
+        piece = new KingPiece();
+    }
+
+    board[startRow][startColumn] = piece;
+
+}
+
+//TODO: finish this
+bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
+{
+
+}
+bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn)
+{
+
+}
+
+//TODO: dummy implementation for part 1
+bool isPieceUnderThreat(int row, int column)
+{
+    return false;
+}
+
+
