@@ -14,7 +14,7 @@
 
     Color color;
 
-    int row;;
+    int row;
 
     int col;
     
@@ -52,8 +52,10 @@
      * Note: An alternate perhaps more ideal way of implementation
      * would have been to define this function as pure virtual and
      * let each derived class override this function.
+     * 
+     * i will be doing that
      */
-    Type getType();
+    virtual Type getType() = 0;
 
     /**
      * @return

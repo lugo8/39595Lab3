@@ -17,6 +17,7 @@ namespace Student
         RookPiece(Student::ChessBoard _board, Color _color, int _row, int _col);
         bool canMoveToLocation(int toRow, int toColumn);
         const char *toString();
+        Type getType();
     };
 }
 

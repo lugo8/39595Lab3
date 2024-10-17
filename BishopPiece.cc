@@ -77,3 +77,7 @@ bool canMoveToLocation(int toRow, int toColumn)
 
     
 }
+
+Type getType(){
+    return Bishop;
+}

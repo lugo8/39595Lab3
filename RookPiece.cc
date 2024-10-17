@@ -70,3 +70,7 @@ bool canMoveToLocation(int toRow, int toColumn)
 
     return false;
 }
+
+Type getType(){
+    return Rook;
+}
