@@ -100,11 +100,11 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
         piece = new BishopPiece(*this, col, startRow, startColumn);
     }
 
-    if(ty == King)
+    /*if(ty == King)
     {
         //TODO: make this work with king's constructor
-        piece = new KingPiece();
-    }
+        //piece = new KingPiece();
+    }*/ //make king not exist for part 1?
 
     board[startRow][startColumn] = piece;
 

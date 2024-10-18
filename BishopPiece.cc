@@ -80,6 +80,6 @@ bool BishopPiece::canMoveToLocation(int toRow, int toColumn)
     
 }
 
-Type getType(){
+Type BishopPiece::getType(){
     return Bishop;
 }

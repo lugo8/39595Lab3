@@ -2,7 +2,7 @@
 #include "Chess.h"
 #include "ChessBoard.hh"
 #include "ChessPiece.hh"
-#include "Student.hh"
+//#include "Student.hh" //for our testing comment out?
 
 
 void test_part1_4x4_1()
@@ -23,6 +23,7 @@ void test_part1_4x4_1()
     sBoard.createChessPiece(Black, Bishop, 1, 3);
     sBoard.createChessPiece(Black, Rook, 1, 1);
     sBoard.createChessPiece(White, Rook, 2, 3);
+    sBoard.displayBoard();
 
     // Calls isValidMove() from every position to every
     // other position on the chess board for all pieces.
