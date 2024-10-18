@@ -3,6 +3,8 @@
 #include "RookPiece.hh"
 #include "BishopPiece.hh"
 #include "KingPiece.hh"
+//new
+#include "Chess.h"
 
 using Student::ChessBoard;
 
@@ -83,19 +85,19 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
     if(ty == Pawn)
     {
         //TODO: make this work with pawn's constructor
-        piece = new PawnPiece();
+        piece = new PawnPiece(*this, col, startRow, startColumn);
     }
 
     if(ty == Rook)
     {
         //TODO: make this work with rook's constructor
-        piece = new RookPiece();
+        piece = new RookPiece(*this, col, startRow, startColumn);
     }
 
     if(ty == Bishop)
     {
         //TODO: make this work with bishop's constructor
-        piece = new BishopPiece();
+        piece = new BishopPiece(*this, col, startRow, startColumn);
     }
 
     if(ty == King)
@@ -111,7 +113,8 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
 //TODO: finish this
 bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
 {
-
+    //dummy
+    return false;
 }
 bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn)
 {

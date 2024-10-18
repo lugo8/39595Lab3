@@ -1,53 +1,57 @@
 #include "PawnPiece.hh"
+#include "ChessBoard.hh"
 
 using Student::PawnPiece;
+using Student::ChessBoard;
 
 //Constructor
-PawnPiece(ChessBoard _board, Color _color, int _row, int _col) : ChessPiece(_board, _color, _row, _column), board(_board){}
+PawnPiece::PawnPiece(ChessBoard& _board, Color _color, int _row, int _col) : ChessPiece(_board, _color, _row, _col){}
 
 //Get unicode version of chesspiece
-const char *toString()
+const char *PawnPiece::toString()
 {
     if(getColor() == Black)
     {
-        return "U+1FA0F";
+        return "♟";
     }
     else
     {
-        return "U+1FA09";
+        return "♙";
     }
 }
 
 //Determine if a piece can be moved to a certain location
-bool canMoveToLocation(int toRow, int toColumn)
+bool PawnPiece::canMoveToLocation(int toRow, int toColumn)
 {
     //Get state of the chess piece
-    int row = getRow();
-    int col = getColumn();
-    Color colr = getColor();
+    int rowP = getRow();
+    int colP = getColumn();
+    Color colrP = getColor();
 
-    Student::ChessPiece* destPiece = board->getPiece(toRow, toColumn);
+    Student::ChessPiece* destPiece = getBoard().getPiece(toRow, toColumn);
 
     //If destination has same color as current piece, cannot move there
-    if(destPiece != NULL && colr == destPiece->getColor())
+    if(destPiece != NULL && colrP == destPiece->getColor())
     {
         return false;
     }
 
     //Get number of rows on board
-    int nRow = board->getNumRows();
+    int nRow = getBoard().getNumRows();
 
     //Normal case: one up or down based on color
     //--------------------------------------------------------------------------------------------------------------------------
 
-    int mvLinear[2];
-    if(colr == Black)
+    int posLinear[2]; //assuming this should be posLinear, not myLinear
+    if(colrP == Black)
     {
-        posLinear = {row + 1, col};
+        posLinear[0] = rowP + 1;
+        posLinear[1] = colP;
     }
-    if(colr == White)
+    if(colrP == White)
     {
-        posLinear = {row - 1, col};
+        posLinear[0] = rowP - 1;
+        posLinear[1] = colP;
     }
 
     //If desired place to move is one in front of pawn, send true
@@ -59,13 +63,15 @@ bool canMoveToLocation(int toRow, int toColumn)
     //Take care of edge case where a pawn in starting position can move forward 2 spaces
     //--------------------------------------------------------------------------------------------------------------------------
 
+
+    //THE PAWN CAN BE BLOCKED AND CANT GO 2 ALWAYS
     //A black piece on row 1 can move 1 or 2 steps along the same column.
-    if(colr == Black && row == 1)
+    if(colrP == Black && rowP == 1)
     {
         posLinear[0]++;
     }
     //A white piece on row n-2 can move 1 or 2 steps along the same column
-    if(colr == White && row == nRow - 2)
+    if(colrP == White && rowP == nRow - 2)
     {
         posLinear[0]--;
     }
@@ -94,6 +100,6 @@ bool canMoveToLocation(int toRow, int toColumn)
 
 }
 
-Type getType(){
+Type PawnPiece::getType(){
     return Pawn;
 }

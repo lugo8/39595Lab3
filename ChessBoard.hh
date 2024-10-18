@@ -22,7 +22,7 @@ namespace Student
          * board.at(row).at(col) returns a pointer to a ChessPiece object.
          * *(board.at(row).at(col)) returns the ChessPiece object itself.
          */
-        std::vector<std::vector<ChessPiece *>> board;
+        std::vector<std::vector<Student::ChessPiece *>> board;
 
     public:
         /**

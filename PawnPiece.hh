@@ -2,6 +2,7 @@
 #define __PAWNPIECE_H__
 
 #include "ChessPiece.hh"
+#include "ChessBoard.hh"
 
 /**
  * Student implementation of a Pawn chess piece.
@@ -12,12 +13,13 @@ namespace Student
     class PawnPiece : public ChessPiece
     {
     private:
-        ChessBoard* board;
+        //ChessBoard* board;
         // Color color;
         // int col; //column
         // int row; //row
     public:
-        PawnPiece(ChessBoard _board, Color _color, int _row, int _col);
+    //change to reference
+        PawnPiece(ChessBoard& _board, Color _color, int _row, int _col);
         bool canMoveToLocation(int toRow, int toColumn);
         const char *toString();
         Type getType();

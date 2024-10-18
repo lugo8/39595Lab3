@@ -10,7 +10,8 @@
   class ChessPiece
   {
   private:
-    ChessBoard board;
+  //changed to reference
+    ChessBoard &board;
 
     Color color;
 
@@ -101,6 +102,11 @@
      * A unicode representation of the piece.
      */
     virtual const char *toString() = 0;
+
+
+    //new function, needed for proper information
+    ChessBoard& getBoard() { return board; }
+
   };
 }
 

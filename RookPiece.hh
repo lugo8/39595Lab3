@@ -2,6 +2,7 @@
 #define _ROOKPIECE_H__
 
 #include "ChessPiece.hh"
+#include "ChessBoard.hh"
 
 /**
  * Student implementation of a Rook chess piece.
@@ -12,9 +13,9 @@ namespace Student
     class RookPiece : public ChessPiece
     {
     private:
-        Student::ChessBoard* board;
+        //Student::ChessBoard* board;
     public:
-        RookPiece(Student::ChessBoard _board, Color _color, int _row, int _col);
+        RookPiece(ChessBoard& _board, Color _color, int _row, int _col);
         bool canMoveToLocation(int toRow, int toColumn);
         const char *toString();
         Type getType();

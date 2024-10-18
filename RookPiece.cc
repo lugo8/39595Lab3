@@ -1,32 +1,34 @@
 #include "RookPiece.hh"
+#include "ChessBoard.hh"
 
 using Student::RookPiece;
+using Student::ChessBoard;
 
 //Constructor
-RookPiece(ChessBoard _board, Color _color, int _row, int _col) : ChessPiece(_board, _color, _row, _column), board(_board){}
+RookPiece::RookPiece(ChessBoard& _board, Color _color, int _row, int _col) : ChessPiece(_board, _color, _row, _col){}
 
 //Get unicode version of chesspiece
-const char *toString()
+const char *RookPiece::toString()
 {
     if(getColor() == Black)
     {
-        return "U+1FA0C";
+        return "♜";
     }
     else
     {
-        return "U+1FA06";
+        return "♖";
     }
 }
 
 //Determine if a piece can be moved to a certain location
-bool canMoveToLocation(int toRow, int toColumn)
+bool RookPiece::canMoveToLocation(int toRow, int toColumn)
 {
     //Get state of the chess piece
     int row = getRow();
     int col = getColumn();
     Color colr = getColor();
 
-    Student::ChessPiece* destPiece = board->getPiece(toRow, toColumn);
+    Student::ChessPiece* destPiece = getBoard().getPiece(toRow, toColumn);
 
     //If destination has same color as current piece, cannot move there
     if(destPiece != NULL && colr == destPiece->getColor())
@@ -41,8 +43,8 @@ bool canMoveToLocation(int toRow, int toColumn)
     }
 
     //Get number of rows/cols on board
-    int nRow = board->getNumRows();
-    int nCol = board->getNumCols();
+    int nRow = getBoard().getNumRows();
+    int nCol = getBoard().getNumCols();
 
     int currRow = row;
     int currCol = col;
@@ -57,7 +59,7 @@ bool canMoveToLocation(int toRow, int toColumn)
         if(toRow == row && toColumn < col) { currCol--;} 
 
         //If a piece was found in between current position and desired one
-        if(currRow != toRow && currCol != toColumn && board->getPiece(currRow, currCol) != NULL)
+        if(currRow != toRow && currCol != toColumn && getBoard().getPiece(currRow, currCol) != NULL)
         {
             return false;
         }
@@ -71,6 +73,6 @@ bool canMoveToLocation(int toRow, int toColumn)
     return false;
 }
 
-Type getType(){
+Type RookPiece::getType(){
     return Rook;
 }

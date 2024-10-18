@@ -4,30 +4,31 @@
 
 
 using Student::ChessPiece;
+using Student::ChessBoard;
 
-ChessPiece(ChessBoard &board, Color color, int row, int column): board(board), color(color), row(row), col(column){}
+ChessPiece::ChessPiece(ChessBoard &board, Color color, int row, int column): board(board), color(color), row(row), col(column){}
 
 //return the chess piece's color
 
-Color getColor(){
+Color ChessPiece::getColor(){
     return color;
 }
 
 
 //return the chess piece's row
 
-int getRow(){
+int ChessPiece::getRow(){
     return row;
 }
 
 //return the chess piece's column
 
-int getColumn(){
-    return column;
+int ChessPiece::getColumn(){
+    return col;
 }
 
 
-void setPosition(int setRow, int setColumn){
+void ChessPiece::setPosition(int setRow, int setColumn){
     row = setRow;
-    column = setColumn;
+    col = setColumn;
 }

@@ -1,32 +1,34 @@
 #include "BishopPiece.hh"
+#include "ChessBoard.hh"
 
 using Student::BishopPiece;
+using Student::ChessBoard;
 
 //Constructor
-BishopPiece(Student::ChessBoard _board, Color _color, int _row, int _col) : ChessPiece(_board, _color, _row, _column), board(_board){}
+BishopPiece::BishopPiece(ChessBoard& _board, Color _color, int _row, int _col) : ChessPiece(_board, _color, _row, _col){}
 
 //Get unicode version of chesspiece
-const char *toString()
+const char *BishopPiece::toString()
 {
     if(getColor() == Black)
     {
-        return "U+1FA0D";
+        return "♝";
     }
     else
     {
-        return "U+1FA07";
+        return "♗";
     }
 }
 
 //Determine if a piece can be moved to a certain location
-bool canMoveToLocation(int toRow, int toColumn)
+bool BishopPiece::canMoveToLocation(int toRow, int toColumn)
 {
    //Get state of the chess piece
     int row = getRow();
     int col = getColumn();
     Color colr = getColor();
 
-    Student::ChessPiece* destPiece = board->getPiece(toRow, toColumn);
+    Student::ChessPiece* destPiece = getBoard().getPiece(toRow, toColumn);
 
     //If destination has same color as current piece, cannot move there
     if(destPiece != NULL && colr == destPiece->getColor())
@@ -41,8 +43,8 @@ bool canMoveToLocation(int toRow, int toColumn)
     }
 
     //Get number of rows/cols on board
-    int nRow = board->getNumRows();
-    int nCol = board->getNumCols();
+    int nRow = getBoard().getNumRows();
+    int nCol = getBoard().getNumCols();
 
     int currRow = row;
     int currCol = col;
@@ -57,7 +59,7 @@ bool canMoveToLocation(int toRow, int toColumn)
         if(toRow < row && toColumn < col) { currRow--; currCol--;} 
 
         //If a piece was found in between current position and desired one
-        if(currRow != toRow && currCol != toColumn && board->getPiece(currRow, currCol) != NULL)
+        if(currRow != toRow && currCol != toColumn && getBoard().getPiece(currRow, currCol) != NULL)
         {
             return false;
         }
