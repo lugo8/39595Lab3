@@ -54,31 +54,57 @@ bool PawnPiece::canMoveToLocation(int toRow, int toColumn)
         posLinear[1] = colP;
     }
 
-    //If desired place to move is one in front of pawn, send true
+    //If desired place to move is one in front of pawn, send true unless there is a opponent piece there
     if(posLinear[0] == toRow && posLinear[1] == toColumn)
     {
-        return true;
+        if(destPiece != NULL)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     //Take care of edge case where a pawn in starting position can move forward 2 spaces
     //--------------------------------------------------------------------------------------------------------------------------
 
-
+    int blockRow;
     //THE PAWN CAN BE BLOCKED AND CANT GO 2 ALWAYS
     //A black piece on row 1 can move 1 or 2 steps along the same column.
     if(colrP == Black && rowP == 1)
     {
         posLinear[0]++;
+        blockRow = toRow - 1;
+        Student::ChessPiece* blockingPiece = getBoard().getPiece((blockRow), toColumn);
+        if(blockingPiece != NULL)
+        {
+            return false;
+        }
     }
     //A white piece on row n-2 can move 1 or 2 steps along the same column
     if(colrP == White && rowP == nRow - 2)
     {
         posLinear[0]--;
+        blockRow = toRow + 1;
+        Student::ChessPiece* blockingPiece = getBoard().getPiece((blockRow), toColumn);
+        if(blockingPiece != NULL)
+        {
+            return false;
+        }
     }
-    //If desired place to move is one in front of pawn, send true
+    //If desired place to move is one in front of pawn, send true ,unless there is a pice there
     if(posLinear[0] == toRow && posLinear[1] == toColumn)
     {
-        return true;
+
+        if(destPiece != NULL)
+        {
+            return false;
+        }
+        else{
+            return true;
+        }
+
     }
 
     //Take care of edge case where pawn can move diagonally if there is a piece there
