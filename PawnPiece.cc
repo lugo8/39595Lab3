@@ -1,6 +1,7 @@
 #include "PawnPiece.hh"
 #include "ChessBoard.hh"
 
+
 using Student::PawnPiece;
 using Student::ChessBoard;
 
@@ -68,40 +69,56 @@ bool PawnPiece::canMoveToLocation(int toRow, int toColumn)
 
     //Take care of edge case where a pawn in starting position can move forward 2 spaces
     //--------------------------------------------------------------------------------------------------------------------------
+    Student::ChessPiece* blockingPiece = NULL;
+    if(posLinear[0] >= 0 && posLinear[0] < nRow)
+    {
+        blockingPiece = getBoard().getPiece(posLinear[0], posLinear[1]);
+    }
+    else
+    {
+        return false;
+    }
 
-    int blockRow;
+    bool blocked = false;
+    bool jumpTwo = false;
     //THE PAWN CAN BE BLOCKED AND CANT GO 2 ALWAYS
-    //A black piece on row 1 can move 1 or 2 steps along the same column.
-    if(colrP == Black && rowP == 1)
+    if(blockingPiece != NULL)
     {
+        blocked = true;
+    }
+        
+    if(colrP == Black)
+    {
+        if(rowP == 1)
+        {
+            jumpTwo = true;
+        }
         posLinear[0]++;
-        blockRow = toRow - 1;
-        Student::ChessPiece* blockingPiece = getBoard().getPiece((blockRow), toColumn);
-        if(blockingPiece != NULL)
-        {
-            return false;
-        }
     }
-    //A white piece on row n-2 can move 1 or 2 steps along the same column
-    if(colrP == White && rowP == nRow - 2)
+    if(colrP == White)
     {
+        if(rowP == nRow - 2)
+        {
+            jumpTwo = true;
+        }
         posLinear[0]--;
-        blockRow = toRow + 1;
-        Student::ChessPiece* blockingPiece = getBoard().getPiece((blockRow), toColumn);
-        if(blockingPiece != NULL)
+    }
+
+    //If desired place to move is two in front of pawn, send true, unless there is a pice there or it is blocked
+    if(posLinear[0] == toRow && posLinear[1] == toColumn && jumpTwo)
+    {
+        if(blocked)
         {
             return false;
         }
-    }
-    //If desired place to move is one in front of pawn, send true ,unless there is a pice there
-    if(posLinear[0] == toRow && posLinear[1] == toColumn)
-    {
 
         if(destPiece != NULL)
         {
             return false;
         }
-        else{
+
+        else
+        {
             return true;
         }
 
@@ -109,15 +126,36 @@ bool PawnPiece::canMoveToLocation(int toRow, int toColumn)
 
     //Take care of edge case where pawn can move diagonally if there is a piece there
     //--------------------------------------------------------------------------------------------------------------------------
-    posLinear[1]++;
-    if(posLinear[0] == toRow && posLinear[1] == toColumn)
+    if(colrP == Black)
     {
-        return true;
+        posLinear[0]--;
     }
-    posLinear[1] -= 2;
-    if(posLinear[0] == toRow && posLinear[1] == toColumn)
+    if(colrP == White)
     {
-        return true;
+        posLinear[0]++;
+    }
+    posLinear[1]++;
+
+    int nCols = getBoard().getNumCols();
+
+    //Check bounds
+    if(!((posLinear[0] < 0 || posLinear[0] >= nRow) || (posLinear[1] < 0 || posLinear[1] >= nCols)))
+    {
+        if(posLinear[0] == toRow && posLinear[1] == toColumn && destPiece != NULL)
+        {
+            return true;
+        }
+    }
+
+    
+    posLinear[1] -= 2;
+
+    if(!((posLinear[0] < 0 || posLinear[0] >= nRow) || (posLinear[1] < 0 || posLinear[1] >= nCols)))
+    {
+        if(posLinear[0] == toRow && posLinear[1] == toColumn && destPiece != NULL)
+        {
+            return true;
+        }
     }
 
     //If gotten to here, cannot move there

@@ -20,11 +20,10 @@ void test_part1_4x4_1()
 
     // Corresponding code
     Student::ChessBoard sBoard(4, 4);
-    sBoard.createChessPiece(White, Rook, 3, 2);
-    sBoard.createChessPiece(Black, Bishop, 1, 3);
-    sBoard.createChessPiece(Black, Rook, 1, 1);
-    sBoard.createChessPiece(White, Rook, 2, 3);
-    sBoard.displayBoard();
+    sBoard.createChessPiece(White, Pawn, 2, 1);
+    //sBoard.createChessPiece(Black, Pawn, 1, 1);
+    sBoard.createChessPiece(Black, Rook, 1, 0);
+    sBoard.createChessPiece(Black, Bishop, 2, 2);
 
     // Calls isValidMove() from every position to every
     // other position on the chess board for all pieces.
@@ -32,10 +31,13 @@ void test_part1_4x4_1()
     int rows = sBoard.getNumRows();
     int cols = sBoard.getNumCols();
 
-    for(int row1 = 0; row1 < rows; row1++)
-    {
-        for(int col1 = 0; col1 < cols; col1++)
-        {
+    // for(int row1 = 0; row1 < rows; row1++)
+    // {
+    //     for(int col1 = 0; col1 < cols; col1++)
+    //     {
+
+            int row1 = 2;
+            int col1 = 1;
             //Every position to every other position
              for(int row2 = 0; row2 < rows; row2++)
             {
@@ -44,8 +46,8 @@ void test_part1_4x4_1()
                     std::cout << "From: " << row1 << " | " << col1 << " To: " << row2 << " | " << col2 << " Valid: " << sBoard.isValidMove(row1, col1, row2, col2) << "\n";
                 }
             }
-        }
-    }
+    //     }
+    // }
 
     std::cout << sBoard.displayBoard().str();
 
