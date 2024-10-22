@@ -59,7 +59,7 @@ bool RookPiece::canMoveToLocation(int toRow, int toColumn)
         if(toRow == row && toColumn < col) { currCol--;} 
 
         //If a piece was found in between current position and desired one
-        if(currRow != toRow && currCol != toColumn && getBoard().getPiece(currRow, currCol) != NULL)
+        if(!(currRow == toRow && currCol == toColumn) && getBoard().getPiece(currRow, currCol) != NULL)
         {
             return false;
         }
