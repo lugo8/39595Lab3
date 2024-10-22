@@ -10,7 +10,7 @@ BishopPiece::BishopPiece(ChessBoard& _board, Color _color, int _row, int _col) :
 //Get unicode version of chesspiece
 const char *BishopPiece::toString()
 {
-    if(getColor() == Black)
+    if(getColor() == White)
     {
         return "♝";
     }

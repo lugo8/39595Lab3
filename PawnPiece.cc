@@ -10,7 +10,7 @@ PawnPiece::PawnPiece(ChessBoard& _board, Color _color, int _row, int _col) : Che
 //Get unicode version of chesspiece
 const char *PawnPiece::toString()
 {
-    if(getColor() == Black)
+    if(getColor() == White)
     {
         return "♟";
     }

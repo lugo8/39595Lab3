@@ -10,7 +10,7 @@ RookPiece::RookPiece(ChessBoard& _board, Color _color, int _row, int _col) : Che
 //Get unicode version of chesspiece
 const char *RookPiece::toString()
 {
-    if(getColor() == Black)
+    if(getColor() == White)
     {
         return "♜";
     }
@@ -50,7 +50,7 @@ bool RookPiece::canMoveToLocation(int toRow, int toColumn)
     int currCol = col;
  
     //While in bounds and not equal to target
-    while(currRow != toRow && currCol != toColumn && currRow < nRow && currCol < nCol && currRow >= 0 && currCol >= 0)
+    while(!(currRow == toRow && currCol == toColumn) && currRow < nRow && currCol < nCol && currRow >= 0 && currCol >= 0)
     {
         //Go in the general direction of desired position
         if(toRow > row && toColumn == col) { currRow++; }
