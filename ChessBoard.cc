@@ -126,7 +126,7 @@ bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColum
 }
 
 //TODO: dummy implementation for part 1
-bool isPieceUnderThreat(int row, int column)
+bool ChessBoard::isPieceUnderThreat(int row, int column)
 {
     return false;
 }
