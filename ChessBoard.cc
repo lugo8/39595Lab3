@@ -123,7 +123,7 @@ bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
     Color col = ogPiece->getColor();
     Type ty = ogPiece->getType();
 
-    if(col != getTurn())
+    if(col != turn)
     {
         return false;
     }
@@ -136,6 +136,14 @@ bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
     createChessPiece(col, ty, toRow, toColumn);
 
     //TODO: see if i need to change turn after i move?
+    if(turn == White)
+    {
+        turn = Black;
+    }
+    else
+    {
+        turn = White;
+    }
 
     return true;
     
