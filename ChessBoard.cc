@@ -112,17 +112,21 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
 
 bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
 {
+    //Check validity of moving
+    if(!isValidMove(fromRow, fromColumn, toRow, toColumn))
+    {
+        return false;
+    }
+
     //Get a copy of piece's attributes
     ChessPiece* ogPiece = getPiece(fromRow, fromColumn);
     Color col = ogPiece->getColor();
     Type ty = ogPiece->getType();
 
-    if(!isValidMove(fromRow, fromColumn, toRow, toColumn) || col != getTurn())
+    if(col != getTurn())
     {
         return false;
     }
-
-   
 
     //Delete old piece at original position
     delete board[fromRow][fromColumn];
