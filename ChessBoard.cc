@@ -112,15 +112,17 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
 
 bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
 {
-    if(!isValidMove(fromRow, fromColumn, toRow, toColumn))
-    {
-        return false;
-    }
-
     //Get a copy of piece's attributes
     ChessPiece* ogPiece = getPiece(fromRow, fromColumn);
     Color col = ogPiece->getColor();
     Type ty = ogPiece->getType();
+
+    if(!isValidMove(fromRow, fromColumn, toRow, toColumn) || col != getTurn())
+    {
+        return false;
+    }
+
+   
 
     //Delete old piece at original position
     delete board[fromRow][fromColumn];
@@ -128,6 +130,8 @@ bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
 
     //Create piece in new positoin
     createChessPiece(col, ty, toRow, toColumn);
+
+    //TODO: see if i need to change turn after i move?
 
     return true;
     

@@ -48,6 +48,9 @@ namespace Student
          */
         int getNumCols() { return numCols; }
 
+        //USER DEFINED TO GET TURN
+        int getTurn() { return turn; }
+
         /**
          * @return
          * Pointer to a piece.
