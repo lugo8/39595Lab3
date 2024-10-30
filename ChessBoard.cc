@@ -110,11 +110,27 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
 
 }
 
-//TODO: finish this
 bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
 {
-    //dummy
-    return false;
+    if(!isValidMove(fromRow, fromColumn, toRow, toColumn))
+    {
+        return false;
+    }
+
+    //Get a copy of piece's attributes
+    ChessPiece* ogPiece = getPiece(fromRow, fromColumn);
+    Color col = ogPiece->getColor();
+    Type ty = ogPiece->getType();
+
+    //Delete old piece at original position
+    delete board[fromRow][fromColumn];
+    board[fromRow][fromColumn] = NULL;
+
+    //Create piece in new positoin
+    createChessPiece(col, ty, toRow, toColumn);
+
+    return true;
+    
 }
 bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn)
 {
@@ -125,10 +141,29 @@ bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColum
     return movingPiece->canMoveToLocation(toRow,toColumn); 
 }
 
-//TODO: dummy implementation for part 1
 bool ChessBoard::isPieceUnderThreat(int row, int column)
 {
+    if(ChessBoard::getPiece(row, column) == NULL)
+    {
+        return false;
+    }
+
+    int numRows = getNumRows();
+    int numCols = getNumCols();
+
+    for(int r = 0; r < numRows; r++)
+    {
+        for(int c = 0; c < numCols; c++)
+        {
+            if(isValidMove(r, c, row, column))
+            {
+                return true;
+            }
+        }
+    }
+
     return false;
+    
 }
 
 
