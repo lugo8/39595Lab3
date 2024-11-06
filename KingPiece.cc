@@ -23,6 +23,9 @@ const char *KingPiece::toString()
 //Determine if a piece can be moved to a certain location
 bool KingPiece::canMoveToLocation(int toRow, int toColumn)
 {
+    //TODO: NEED TO ADD SUPPORT FOR DIAGONAL MOVEMENT
+
+
     //Get state of the chess piece
     int row = getRow();
     int col = getColumn();
