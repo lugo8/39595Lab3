@@ -25,6 +25,7 @@ namespace Student
         std::vector<std::vector<Student::ChessPiece *>> board;
 
     public:
+
         /**
          * @brief
          * Allocates memory on the heap for the board.
@@ -132,6 +133,9 @@ namespace Student
          * An output stream containing the full board layout.
          */
         std::ostringstream displayBoard();
+
+        //User defined to delete a chesspiece
+        void deleteChessPiece(int r, int c);
     };
 }
 

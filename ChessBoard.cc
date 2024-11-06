@@ -100,11 +100,10 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startCol
         piece = new BishopPiece(*this, col, startRow, startColumn);
     }
 
-    /*if(ty == King)
+    if(ty == King)
     {
-        //TODO: make this work with king's constructor
-        //piece = new KingPiece();
-    }*/ //make king not exist for part 1?
+        piece = new KingPiece(*this, col, startRow, startColumn);
+    }
 
     board[startRow][startColumn] = piece;
 
@@ -180,6 +179,18 @@ bool ChessBoard::isPieceUnderThreat(int row, int column)
 
     return false;
     
+}
+
+void ChessBoard::deleteChessPiece(int r, int c)
+{
+    ChessPiece* piece = getPiece(r, c);
+
+    if(piece != NULL)
+    {
+        delete board[r][c];
+        board[r][c] = NULL;
+    }
+
 }
 
 

@@ -80,10 +80,27 @@ void test_part2_4x4()
 
 }
 
+void test_part3()
+{
+    using Student::ChessPiece;
+    Student::ChessBoard sBoard(4, 4);
+    sBoard.createChessPiece(White, Pawn, 2, 1);
+    sBoard.createChessPiece(Black, King, 1, 1);
+    sBoard.createChessPiece(Black, Rook, 1, 0);
+    sBoard.createChessPiece(Black, Bishop, 2, 2);
+
+    std::cout << sBoard.displayBoard().str();
+
+    std::cout << "Type: " << ((sBoard.getPiece(1,1))->getType() ==  King) << "\n";
+
+
+}
+
 //commit test alan
 int main()
 {
     //test_part1_4x4_1();
-    test_part2_4x4();
+    //test_part2_4x4();
+    test_part3();
     return EXIT_SUCCESS;
 }
