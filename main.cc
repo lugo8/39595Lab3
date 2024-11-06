@@ -84,14 +84,22 @@ void test_part3()
 {
     using Student::ChessPiece;
     Student::ChessBoard sBoard(4, 4);
-    sBoard.createChessPiece(White, Pawn, 2, 1);
-    sBoard.createChessPiece(Black, King, 1, 1);
-    sBoard.createChessPiece(Black, Rook, 1, 0);
-    sBoard.createChessPiece(Black, Bishop, 2, 2);
+    sBoard.createChessPiece(Black, Pawn, 2, 1);
+    sBoard.createChessPiece(White, King, 0, 2);
+    sBoard.createChessPiece(White, Rook, 1, 0);
+    sBoard.createChessPiece(White, Bishop, 2, 2);
 
     std::cout << sBoard.displayBoard().str();
 
-    std::cout << "Type: " << ((sBoard.getPiece(1,1))->getType() ==  King) << "\n";
+    std::cout << "Can Move: " << ((sBoard.getPiece(0,2))->canMoveToLocation(1,2)) << "\n";
+
+    sBoard.movePiece(0,2,0,1);
+
+    std::cout << sBoard.displayBoard().str();
+
+    // sBoard.movePiece(0,2,0,2);
+
+    // std::cout << sBoard.displayBoard().str();
 
 
 }

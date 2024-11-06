@@ -93,8 +93,7 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
         {
             //Create piece
             ChessBoard& board = getBoard();
-            Student::ChessPiece* target = board.getPiece(toRow, toColumn);
-            Color col = target->getColor();
+            Color col = getColor();
             board.createChessPiece(col, King, toRow, toColumn);
 
             //Determine if its under thread
@@ -105,7 +104,7 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
             
         }
 
-        return threat;
+        return !threat;
         
     }
 
