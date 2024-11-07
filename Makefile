@@ -8,5 +8,5 @@ custom_tests:
 	$(CC) $(C_FLAGS) $(SRC_FILES) main.cc -o $(APP)
 
 valgrind:
-	valgrind --leak-check=full ./$(APP) $(TEST)
+	valgrind -s --leak-check=full ./$(APP) $(TEST)
 

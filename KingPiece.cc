@@ -77,10 +77,15 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     if(toColumn > col) { currCol++;}
     if(toColumn < col) { currCol--;} 
 
-    //If right position, check if under threat
+//can i just delete the king? in its own function? then remake it?
+
+    //If right position, check if under threat //NEED TO IMAGINE KING NO LONGER EXISTS AT STARTING POINT
+    
+    //can i copy the board without the king and check?
     if((currRow == toRow && currCol == toColumn) && currRow < nRow && currCol < nCol && currRow >= 0 && currCol >= 0)
     {
         ChessBoard& board = getBoard();
+
         
         Student::ChessPiece* target = board.getPiece(toRow, toColumn);
 
@@ -89,39 +94,57 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
         //If a piece is in desired spot, change it to opposite color to see if king would be under thread
         if(target != NULL)
         {
-            Color col = target->getColor();
+            Color color0 = target->getColor();
             Type ty = target->getType();
 
-            Color oppositeCol;
-            if(col == White)
+            Color oppositeColor;
+            if(color0 == White)
             {
-                oppositeCol = Black;
+                oppositeColor = Black;
             }
-            else if(col == Black)
+            else if(color0 == Black)
             {
-                oppositeCol = White;
+                oppositeColor = White;
             }
 
-            board.createChessPiece(oppositeCol, ty, toRow, toColumn);
+                                //remove current king
+
+            board.deleteChessPiece(row, col);
+
+            board.createChessPiece(oppositeColor, ty, toRow, toColumn);
 
             threat = board.isPieceUnderThreat(toRow, toColumn);
 
-            board.createChessPiece(col, ty, toRow, toColumn);
+            board.createChessPiece(color0, ty, toRow, toColumn);
+
+                        //place the king back
+            board.createChessPiece(colr, King, row, col); 
         }
 
         //create chesspiece at target point and see if it is under threat
         else
-        {
+        {   
+
+
+
+
             //Create piece
+            //why create another board in this if block???
             ChessBoard& board = getBoard();
-            Color col = getColor();
-            board.createChessPiece(col, King, toRow, toColumn);
+            Color color1 = getColor();            
+            //remove current king
+
+            board.deleteChessPiece(row, col);
+            board.createChessPiece(color1, King, toRow, toColumn);
 
             //Determine if its under thread
             threat = board.isPieceUnderThreat(toRow, toColumn);
 
             //Delete piece
             board.deleteChessPiece(toRow, toColumn);
+
+            //place the king back
+            board.createChessPiece(colr, King, row, col); 
             
         }
 
