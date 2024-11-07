@@ -36,7 +36,12 @@ namespace Student
          * Number of columns of the chessboard
          */
         ChessBoard(int numRow, int numCol);
-
+        /**
+         * @brief
+         * Destructor for chessboard
+         * iterate thru board and delete pieces
+         */
+        ~ChessBoard();
         /**
          * @return
          * Number of rows in chess board.

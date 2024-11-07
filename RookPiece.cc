@@ -10,13 +10,13 @@ RookPiece::RookPiece(ChessBoard& _board, Color _color, int _row, int _col) : Che
 //Get unicode version of chesspiece
 const char *RookPiece::toString()
 {
-    if(getColor() == White)
+    if(!(getColor() == White))
     {
-        return "♜";
+        return "♜"; //black rook
     }
     else
     {
-        return "♖";
+        return "♖"; //white rook
     }
 }
 

@@ -10,13 +10,13 @@ KingPiece::KingPiece(ChessBoard& _board, Color _color, int _row, int _col) : Che
 //Get unicode version of chesspiece
 const char *KingPiece::toString()
 {
-    if(getColor() == Black)
+    if(!(getColor() == Black))
     {
-        return "♔";
+        return "♔"; //white king
     }
     else
     {
-        return "♚";
+        return "♚"; //black king
     }
 }
 
@@ -52,12 +52,16 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     int currRow = row;
     int currCol = col;
 
+    // outside of 1 tile range instant fail
+    if(((row - toRow) > 1)||((row - toRow) < -1)) {return false;}
+    if(((col - toColumn) > 1)||((col - toColumn) < -1)) {return false;}
+
     //Go in the general direction of desired position
-    if(toRow > row && toColumn == col) { currRow++; }
-    else if(toRow < row && toColumn == col) { currRow--; }
-    else if(toRow == row && toColumn > col) { currCol++;}
-    else if(toRow == row && toColumn < col) { currCol--;} 
-    else { return false; }
+    //can all be ran to get diagonals
+    if(toRow > row) { currRow++; }
+    if(toRow < row) { currRow--; }
+    if(toColumn > col) { currCol++;}
+    if(toColumn < col) { currCol--;} 
 
     //If right position, check if under threat
     if((currRow == toRow && currCol == toColumn) && currRow < nRow && currCol < nCol && currRow >= 0 && currCol >= 0)

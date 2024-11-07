@@ -71,6 +71,19 @@ ChessBoard::ChessBoard(int numRow, int numCol)
     }
 }
 
+ChessBoard::~ChessBoard(){
+    for (int i = 0; i < numCols; i++)
+    {
+        for (int j = 0; j < numRows; j++)
+        {
+            if(board[j][i] != nullptr){
+                delete board[j][i];
+                board[j][i] = nullptr;
+            }
+        }
+    }
+}
+
 void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int startColumn)
 {
     //Remove peice in startRow, startCol if not NULL

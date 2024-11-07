@@ -84,22 +84,44 @@ void test_part3()
 {
     using Student::ChessPiece;
     Student::ChessBoard sBoard(4, 4);
-    sBoard.createChessPiece(Black, Pawn, 2, 1);
-    sBoard.createChessPiece(White, King, 0, 2);
-    sBoard.createChessPiece(White, Rook, 1, 0);
-    sBoard.createChessPiece(White, Bishop, 2, 2);
+    sBoard.createChessPiece(White, Bishop, 2, 0);
+    sBoard.createChessPiece(Black, Pawn, 3, 0);
+    sBoard.createChessPiece(White, Bishop, 2, 0);
+    sBoard.createChessPiece(Black, Rook, 2, 0);
+    sBoard.createChessPiece(Black, King, 3, 2);
+    sBoard.createChessPiece(White, King, 1, 1);
 
     std::cout << sBoard.displayBoard().str();
 
-    std::cout << "Can Move: " << ((sBoard.getPiece(0,2))->canMoveToLocation(1,2)) << "\n";
-
-    sBoard.movePiece(0,2,0,1);
+    sBoard.movePiece(1,1,0,2);
 
     std::cout << sBoard.displayBoard().str();
 
-    // sBoard.movePiece(0,2,0,2);
+    sBoard.movePiece(2,0,0,0);
 
-    // std::cout << sBoard.displayBoard().str();
+    std::cout << sBoard.displayBoard().str(); //FINAL STATE IN ERROR
+
+     sBoard.movePiece(0,2,0,3);
+
+    std::cout << sBoard.displayBoard().str(); //should be same, cant move there FAILLLLLL
+
+    /*sBoard.movePiece(0,2,1,2);
+
+    std::cout << sBoard.displayBoard().str();
+
+    sBoard.movePiece(0,0,0,1);
+
+    std::cout << sBoard.displayBoard().str();
+
+    sBoard.movePiece(0,3,0,0); //two black moves in a row... not even a valid move
+
+    std::cout << sBoard.displayBoard().str();
+
+    sBoard.movePiece(1,2,0,1); //white king eats black rook
+
+    std::cout << sBoard.displayBoard().str();
+
+*/
 
 
 }
