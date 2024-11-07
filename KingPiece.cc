@@ -31,6 +31,37 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     int col = getColumn();
     Color colr = getColor();
 
+
+
+    //Cant move to current position
+    if(row == toRow && col == toColumn)
+    {
+        return false;
+    }
+    // outside of 1 tile range instant fail
+    if(((row - toRow) > 1)||((row - toRow) < -1)) {return false;}
+    if(((col - toColumn) > 1)||((col - toColumn) < -1)) {return false;}
+
+
+    //Get number of rows/cols on board
+    int nRow = getBoard().getNumRows();
+    int nCol = getBoard().getNumCols();
+
+    //bad parameters
+    if (row >= nRow) {return false;}
+    if (col >= nCol) {return false;}
+    if (row < 0) {return false;}
+    if (col < 0) {return false;}
+    if (toRow >= nRow) {return false;}
+    if (toColumn >= nCol) {return false;}
+    if (toRow < 0) {return false;}
+    if (toColumn < 0) {return false;}
+    
+
+
+    int currRow = row;
+    int currCol = col;
+
     Student::ChessPiece* destPiece = getBoard().getPiece(toRow, toColumn);
 
     //If destination has same color as current piece, cannot move there
@@ -38,23 +69,6 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     {
         return false;
     }
-
-    //Cant move to current position
-    if(row == toRow && col == toColumn)
-    {
-        return false;
-    }
-
-    //Get number of rows/cols on board
-    int nRow = getBoard().getNumRows();
-    int nCol = getBoard().getNumCols();
-
-    int currRow = row;
-    int currCol = col;
-
-    // outside of 1 tile range instant fail
-    if(((row - toRow) > 1)||((row - toRow) < -1)) {return false;}
-    if(((col - toColumn) > 1)||((col - toColumn) < -1)) {return false;}
 
     //Go in the general direction of desired position
     //can all be ran to get diagonals

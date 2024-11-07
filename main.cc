@@ -101,12 +101,13 @@ void test_part3()
 
     std::cout << sBoard.displayBoard().str(); //FINAL STATE IN ERROR
 
-    //sBoard.movePiece(0,2,0,1);//cant move here WORKS
+    //sBoard.movePiece(0,2,1,2);//can move here WORKS
+    sBoard.movePiece(0,2,0,1);//cant move here WORKS
     //sBoard.movePiece(0,2,2,2);//cant move here WORKS
-    //sBoard.movePiece(0,2,1,4);//cant move here MEMORY ERROR
-    //sBoard.movePiece(0,2,-1,2);//cant move here MEMORY ERROR
-    //sBoard.movePiece(0,2,0,4);//cant move here MEMORY ERROR
-    sBoard.movePiece(0,2,0,3);//cant move here FAIL
+    //sBoard.movePiece(0,2,1,4);//cant move here MEMORY ERROR GONE
+    //sBoard.movePiece(0,2,-1,2);//cant move here MEMORY ERROR GONE
+    //sBoard.movePiece(0,2,0,4);//cant move here MEMORY ERROR GONE
+    //sBoard.movePiece(0,2,0,3);//cant move here FAIL
 
     std::cout << sBoard.displayBoard().str(); //should be same, cant move there FAILLLLLL
 
