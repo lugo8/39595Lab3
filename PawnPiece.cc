@@ -29,6 +29,19 @@ bool PawnPiece::canMoveToLocation(int toRow, int toColumn)
     int colP = getColumn();
     Color colrP = getColor();
 
+    int nRow = getBoard().getNumRows();
+    int nCol = getBoard().getNumCols();
+
+        //bad parameters
+    if (rowP >= nRow) {return false;}
+    if (colP >= nCol) {return false;}
+    if (rowP < 0) {return false;}
+    if (colP < 0) {return false;}
+    if (toRow >= nRow) {return false;}
+    if (toColumn >= nCol) {return false;}
+    if (toRow < 0) {return false;}
+    if (toColumn < 0) {return false;}
+
     Student::ChessPiece* destPiece = getBoard().getPiece(toRow, toColumn);
 
     //If destination has same color as current piece, cannot move there
@@ -38,7 +51,7 @@ bool PawnPiece::canMoveToLocation(int toRow, int toColumn)
     }
 
     //Get number of rows on board
-    int nRow = getBoard().getNumRows();
+    
 
     //Normal case: one up or down based on color
     //--------------------------------------------------------------------------------------------------------------------------

@@ -27,6 +27,19 @@ bool RookPiece::canMoveToLocation(int toRow, int toColumn)
     int row = getRow();
     int col = getColumn();
     Color colr = getColor();
+    int nRow = getBoard().getNumRows();
+    int nCol = getBoard().getNumCols();
+
+        //bad parameters
+    if (row >= nRow) {return false;}
+    if (col >= nCol) {return false;}
+    if (row < 0) {return false;}
+    if (col < 0) {return false;}
+    if (toRow >= nRow) {return false;}
+    if (toColumn >= nCol) {return false;}
+    if (toRow < 0) {return false;}
+    if (toColumn < 0) {return false;}
+
 
     Student::ChessPiece* destPiece = getBoard().getPiece(toRow, toColumn);
 
@@ -43,8 +56,7 @@ bool RookPiece::canMoveToLocation(int toRow, int toColumn)
     }
 
     //Get number of rows/cols on board
-    int nRow = getBoard().getNumRows();
-    int nCol = getBoard().getNumCols();
+
 
     int currRow = row;
     int currCol = col;
