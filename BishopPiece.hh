@@ -16,6 +16,7 @@ namespace Student
         //Student::ChessBoard* board;
     public:
         BishopPiece(ChessBoard& _board, Color _color, int _row, int _col);
+        bool canPhysicallyMove(int fromRow, int fromCol, int toRow, int toCol);
         bool canMoveToLocation(int toRow, int toColumn);
         const char *toString();
         Type getType();
