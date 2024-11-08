@@ -84,27 +84,37 @@ void test_part3()
 {
     using Student::ChessPiece;
     Student::ChessBoard sBoard(4, 4);
-    sBoard.createChessPiece(Black, Bishop, 0, 3);
-    sBoard.createChessPiece(Black, Rook, 0, 3);
-    sBoard.createChessPiece(White, Pawn, 2, 3);
-    sBoard.createChessPiece(Black, Pawn, 3, 0);
-    sBoard.createChessPiece(Black, King, 1, 2);
-    sBoard.createChessPiece(White, King, 1, 0);
+    sBoard.createChessPiece(White, Rook, 3, 2);
+    sBoard.createChessPiece(Black, Bishop, 1, 3);
+    sBoard.createChessPiece(Black, Rook, 1, 1);
+    sBoard.createChessPiece(White, Rook, 2, 3);
+    sBoard.createChessPiece(Black, King, 0, 0);
+    sBoard.createChessPiece(White, King, 3, 0);
+
+    std::cout << sBoard.displayBoard().str();
+
+    sBoard.movePiece(3,0,2,0);
+
+    std::cout << sBoard.displayBoard().str(); 
+
+    sBoard.movePiece(1,3,0,2);    
 
     std::cout << sBoard.displayBoard().str();
 
     sBoard.movePiece(2,3,1,3);
 
-    std::cout << sBoard.displayBoard().str(); //FINAL STATE
+    std::cout << sBoard.displayBoard().str(); 
 
-    sBoard.movePiece(1,2,0,1);    
+    sBoard.movePiece(1,1,0,1);
 
-    std::cout << sBoard.displayBoard().str();
+    std::cout << sBoard.displayBoard().str(); //FINAL STATE IN ERROR
+    std::cout << sBoard.getTurn(); //should not move, doesnt take white king out of check
 
-    //sBoard.movePiece(2,0,0,0);
+    sBoard.movePiece(1,3,1,0); //TRY MOVES HERE THYE ALL SEEM FINE, exept 1,3 to 1,0
 
-    //std::cout << sBoard.displayBoard().str(); //FINAL STATE IN ERROR
-
+    std::cout << sBoard.displayBoard().str(); //should not move, doesnt take white king out of check
+    std::cout << sBoard.getTurn(); //should not move, doesnt take white king out of check
+    
     //sBoard.movePiece(0,2,1,2);//can move here WORKS
     //sBoard.movePiece(0,2,1,3);//can move here WORKS
     //sBoard.movePiece(0,2,0,1);//cant move here WORKS
