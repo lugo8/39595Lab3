@@ -206,4 +206,16 @@ void ChessBoard::deleteChessPiece(int r, int c)
 
 }
 
+void ChessBoard::nullChessPiece(int r, int c)
+{
+
+    board[r][c] = NULL;
+
+}
+
+void ChessBoard::placePiece(int r, int c, ChessPiece* piece)
+{
+    board[r][c] = piece;
+}
+
 

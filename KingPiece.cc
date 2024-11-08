@@ -86,28 +86,28 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     {
         ChessBoard& board = getBoard();
 
-        for(int i = 0; i<3; i++){ //is the desired new location next to a king? if so, cant move
-            for(int j = 0; j < 3; j++){
-                //printf("working...\n");
-                //printf("i = %d, j = %d\n", i, j);
-                int relativeRow = (toRow-1)+i;
-                int relativeCol = (toColumn-1)+j;
-               // printf("relativeRow = %d, relativeCol = %d\n", relativeRow, relativeCol);
-                if(relativeCol<nCol && relativeCol >= 0 && relativeRow < nRow && relativeRow >= 0){
-                    //printf("inbounds...\n");
-                    Student::ChessPiece* kingFinder = board.getPiece(relativeRow, relativeCol);
-                    if(kingFinder != NULL){
-                        if(kingFinder->getType() == King){
-                            if(kingFinder->getColor() != colr){
-                                //printf("found opp king nearby...\n");
-                                //printf("i = %d, j = %d\n", i, j);
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        // for(int i = 0; i<3; i++){ //is the desired new location next to a king? if so, cant move
+        //     for(int j = 0; j < 3; j++){
+        //         //printf("working...\n");
+        //         //printf("i = %d, j = %d\n", i, j);
+        //         int relativeRow = (toRow-1)+i;
+        //         int relativeCol = (toColumn-1)+j;
+        //        // printf("relativeRow = %d, relativeCol = %d\n", relativeRow, relativeCol);
+        //         if(relativeCol<nCol && relativeCol >= 0 && relativeRow < nRow && relativeRow >= 0){
+        //             //printf("inbounds...\n");
+        //             Student::ChessPiece* kingFinder = board.getPiece(relativeRow, relativeCol);
+        //             if(kingFinder != NULL){
+        //                 if(kingFinder->getType() == King){
+        //                     if(kingFinder->getColor() != colr){
+        //                         //printf("found opp king nearby...\n");
+        //                         //printf("i = %d, j = %d\n", i, j);
+        //                         return false;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
         
         Student::ChessPiece* target = board.getPiece(toRow, toColumn);
@@ -132,7 +132,9 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
 
                                 //remove current king
 
-            board.deleteChessPiece(row, col);
+            //board.deleteChessPiece(row, col);
+            board.nullChessPiece(row, col);
+            
 
             board.createChessPiece(oppositeColor, ty, toRow, toColumn);
 
@@ -141,7 +143,8 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
             board.createChessPiece(color0, ty, toRow, toColumn);
 
                         //place the king back
-            board.createChessPiece(colr, King, row, col); 
+            //board.createChessPiece(colr, King, row, col); 
+            board.placePiece(row, col, this);
         }
 
         //create chesspiece at target point and see if it is under threat
@@ -153,11 +156,13 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
 
             //Create piece
             //why create another board in this if block???
-            ChessBoard& board = getBoard();
+            // /ChessBoard& board = getBoard();
             Color color1 = getColor();            
             //remove current king
 
-            board.deleteChessPiece(row, col);
+            //board.deleteChessPiece(row, col);
+            board.nullChessPiece(row, col);
+
             board.createChessPiece(color1, King, toRow, toColumn);
 
             //Determine if its under thread
@@ -167,7 +172,8 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
             board.deleteChessPiece(toRow, toColumn);
 
             //place the king back
-            board.createChessPiece(colr, King, row, col); 
+            //board.createChessPiece(colr, King, row, col); 
+            board.placePiece(row, col, this);
             
         }
 

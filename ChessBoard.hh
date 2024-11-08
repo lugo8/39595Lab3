@@ -141,6 +141,11 @@ namespace Student
 
         //User defined to delete a chesspiece
         void deleteChessPiece(int r, int c);
+
+        //User defined to make a chess piece null (not delete special case for king only)
+        void nullChessPiece(int r, int c);
+
+        void placePiece(int r, int c, ChessPiece* piece);
     };
 }
 
