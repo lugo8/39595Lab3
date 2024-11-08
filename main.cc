@@ -83,19 +83,50 @@ void test_part2_4x4()
 void test_part3()
 {
     using Student::ChessPiece;
-    Student::ChessBoard sBoard(4, 4);
-    // sBoard.createChessPiece(Black, King, 0, 0);
-    // sBoard.createChessPiece(Black, Rook, 0, 1);
-    // sBoard.createChessPiece(White, Rook, 0, 2);
-    // sBoard.createChessPiece(White, Rook, 1, 2);
-    // sBoard.createChessPiece(White, King, 3, 0);
+    Student::ChessBoard sBoard(8, 8);
+     sBoard.createChessPiece(White, Rook, 4, 5);
+     sBoard.createChessPiece(Black, Rook, 5, 6);
+     sBoard.createChessPiece(White, Pawn, 1, 5);
+     sBoard.createChessPiece(Black, Bishop, 7, 6);
+     sBoard.createChessPiece(White, Pawn, 5, 5);
 
-    sBoard.createChessPiece(Black, King, 3, 3);
-    sBoard.createChessPiece(Black, Rook, 3, 2);
-    sBoard.createChessPiece(White, King, 2, 1);
+    sBoard.createChessPiece(White, Rook, 3, 6);
+    sBoard.createChessPiece(Black, Bishop, 7, 1);
+    sBoard.createChessPiece(Black, Bishop, 0, 2);
+
+    sBoard.createChessPiece(Black, Rook, 7, 6);
+    sBoard.createChessPiece(White, Pawn, 4, 2);
+    sBoard.createChessPiece(White, Rook, 0, 0);
+
+    sBoard.createChessPiece(Black, Bishop, 7, 5);
+    sBoard.createChessPiece(White, Rook, 2, 1);
+    sBoard.createChessPiece(White, Rook, 0, 7);
+
+    sBoard.createChessPiece(White, Bishop, 0, 4);
+    sBoard.createChessPiece(White, Bishop, 6, 7);
+    sBoard.createChessPiece(Black, King, 1, 2);
+    sBoard.createChessPiece(White, King, 0, 1);
 
 
     std::cout << sBoard.displayBoard().str();
+    std::cout << sBoard.getTurn() << "\n";
+    //std::cout << sBoard.isPieceUnderThreat(0,1) << "\n";
+
+    sBoard.movePiece(0,1,1,2);
+
+    std::cout << sBoard.displayBoard().str();
+    std::cout << sBoard.getTurn() << "\n";
+
+    sBoard.movePiece(0,2,2,0);
+
+    std::cout << sBoard.displayBoard().str();
+    std::cout << sBoard.getTurn() << "\n";
+
+
+
+
+    //std::cout << sBoard.isPieceUnderThreat(0,1) << "\n";
+    /*
     for(int fromRow = 0; fromRow < 4; fromRow++)
     {
         for(int fromCol = 0; fromCol < 4; fromCol++)
@@ -117,7 +148,7 @@ void test_part3()
                 }
             }
         }
-    } 
+    } */
     
 
     // sBoard.movePiece(3,0,2,0);
