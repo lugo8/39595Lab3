@@ -162,11 +162,15 @@ bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
 }
 bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn)
 {
+
+
+
     ChessPiece *movingPiece = board.at(fromRow).at(fromColumn);
     if(movingPiece == nullptr){
         return false;
     }
     return movingPiece->canMoveToLocation(toRow,toColumn); 
+    //return movingPiece->canPhysicallyMove(toRow,toColumn); 
 }
 
 bool ChessBoard::isPieceUnderThreat(int row, int column)

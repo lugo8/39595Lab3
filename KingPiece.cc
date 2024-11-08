@@ -38,7 +38,6 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     {
         return false;
     }
-
     // outside of 1 tile range instant fail
     if(((row - toRow) > 1)||((row - toRow) < -1)) {return false;}
     if(((col - toColumn) > 1)||((col - toColumn) < -1)) {return false;}
@@ -133,19 +132,52 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
 
                                 //remove current king
 
-            //board.deleteChessPiece(row, col);
-            board.nullChessPiece(row, col);
-            
+            board.deleteChessPiece(row, col);
 
             board.createChessPiece(oppositeColor, ty, toRow, toColumn);
+
+                        //need to make other king a dummy pawn
+            int oppKingRow = -1;
+            int oppKingCol = -1; //if these are -1 it means no opp king
+            //need to find opp king and replace it with a dummy pawn
+            for(int ro = 0; ro < nRow; ro++)
+            {
+                for(int co = 0; co < nCol; co++)
+                {
+                    Student::ChessPiece* kingFinderOpp = board.getPiece(ro, co);
+                    if(kingFinderOpp != NULL){
+                        if(kingFinderOpp->getType() == King){
+                            if(kingFinderOpp->getColor() != color0){ //found the opp, take its position
+                                oppKingRow = kingFinderOpp->getRow(); 
+                                oppKingCol = kingFinderOpp->getColumn(); 
+                            }
+                        }
+                    }
+                }
+            }
+            if(oppKingCol >=0 && oppKingRow >= 0){
+                board.deleteChessPiece(oppKingRow, oppKingCol);// get rid of the opp king
+                if(color0 == White){
+                    board.createChessPiece(Black, Pawn, oppKingRow, oppKingCol);
+                }else{
+                    board.createChessPiece(White, Pawn, oppKingRow, oppKingCol);
+                }
+            }
 
             threat = board.isPieceUnderThreat(toRow, toColumn);
 
             board.createChessPiece(color0, ty, toRow, toColumn);
-
+            //reinstate the opp king if dummied
+            if(oppKingCol >=0 && oppKingRow >= 0){
+                board.deleteChessPiece(oppKingRow, oppKingCol);// get rid of the opp king
+                if(color0 == White){
+                    board.createChessPiece(Black, King, oppKingRow, oppKingCol);
+                }else{
+                    board.createChessPiece(White, King, oppKingRow, oppKingCol);
+                }
+            }
                         //place the king back
-            //board.createChessPiece(colr, King, row, col); 
-            board.placePiece(row, col, this);
+            board.createChessPiece(colr, King, row, col); 
         }
 
         //create chesspiece at target point and see if it is under threat
@@ -157,14 +189,42 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
 
             //Create piece
             //why create another board in this if block???
-            // /ChessBoard& board = getBoard();
+            ChessBoard& board = getBoard();
             Color color1 = getColor();            
             //remove current king
 
-            //board.deleteChessPiece(row, col);
-            board.nullChessPiece(row, col);
-
+            board.deleteChessPiece(row, col);
             board.createChessPiece(color1, King, toRow, toColumn);
+
+
+            //need to make other king a dummy pawn
+            int oppKingRow = -1;
+            int oppKingCol = -1; //if these are -1 it means no opp king
+            //need to find opp king and replace it with a dummy pawn
+            for(int ro = 0; ro < nRow; ro++)
+            {
+                for(int co = 0; co < nCol; co++)
+                {
+                    Student::ChessPiece* kingFinderOpp = board.getPiece(ro, co);
+                    if(kingFinderOpp != NULL){
+                        if(kingFinderOpp->getType() == King){
+                            if(kingFinderOpp->getColor() != color1){ //found the opp, take its position
+                                oppKingRow = kingFinderOpp->getRow(); 
+                                oppKingCol = kingFinderOpp->getColumn(); 
+                            }
+                        }
+                    }
+                }
+            }
+            if(oppKingCol >=0 && oppKingRow >= 0){
+                board.deleteChessPiece(oppKingRow, oppKingCol);// get rid of the opp king
+                if(color1 == White){
+                    board.createChessPiece(Black, Pawn, oppKingRow, oppKingCol);
+                }else{
+                    board.createChessPiece(White, Pawn, oppKingRow, oppKingCol);
+                }
+            }
+
 
             //Determine if its under thread
             threat = board.isPieceUnderThreat(toRow, toColumn);
@@ -172,9 +232,17 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
             //Delete piece
             board.deleteChessPiece(toRow, toColumn);
 
+            //reinstate the opp king if dummied
+            if(oppKingCol >=0 && oppKingRow >= 0){
+                board.deleteChessPiece(oppKingRow, oppKingCol);// get rid of the opp king
+                if(color1 == White){
+                    board.createChessPiece(Black, King, oppKingRow, oppKingCol);
+                }else{
+                    board.createChessPiece(White, King, oppKingRow, oppKingCol);
+                }
+            }
             //place the king back
-            //board.createChessPiece(colr, King, row, col); 
-            board.placePiece(row, col, this);
+            board.createChessPiece(colr, King, row, col); 
             
         }
 
