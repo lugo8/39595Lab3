@@ -175,8 +175,8 @@ bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColum
 
 bool ChessBoard::isPieceUnderThreat(int row, int column)
 {
-    if(ChessBoard::getPiece(row, column) == NULL)
-    {
+    ChessPiece *movingPiece = board.at(row).at(row);
+    if(movingPiece == nullptr){
         return false;
     }
 
@@ -187,7 +187,7 @@ bool ChessBoard::isPieceUnderThreat(int row, int column)
     {
         for(int c = 0; c < numCols; c++)
         {
-            if(isValidMove(r, c, row, column))
+            if(movingPiece->canPhysicallyMove(r, c, row, column))
             {
                 return true;
             }
