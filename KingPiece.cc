@@ -38,6 +38,7 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     {
         return false;
     }
+
     // outside of 1 tile range instant fail
     if(((row - toRow) > 1)||((row - toRow) < -1)) {return false;}
     if(((col - toColumn) > 1)||((col - toColumn) < -1)) {return false;}
