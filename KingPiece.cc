@@ -20,7 +20,7 @@ const char *KingPiece::toString()
     }
 }
 
-bool KingPiece::canPhysicallyMove(int fromRow, int fromCol, int toRow, int toColumn)
+bool KingPiece::canPhysicallyMove(int toRow, int toColumn)
 {
     //TODO: NEED TO ADD SUPPORT FOR DIAGONAL MOVEMENT
 

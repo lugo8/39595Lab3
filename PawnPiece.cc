@@ -21,7 +21,7 @@ const char *PawnPiece::toString()
     }
 }
 
-bool PawnPiece::canPhysicallyMove(int fromRow, int fromCol, int toRow, int toColumn)
+bool PawnPiece::canPhysicallyMove(int toRow, int toColumn)
 {
      //Get state of the chess piece
     int rowP = getRow();
@@ -172,7 +172,6 @@ bool PawnPiece::canPhysicallyMove(int fromRow, int fromCol, int toRow, int toCol
     {
         if(posLinear[0] == toRow && posLinear[1] == toColumn && destPiece != NULL)
         {
-                        //replace all return true with this block of code...
              
             return true; //real true
             //block over...

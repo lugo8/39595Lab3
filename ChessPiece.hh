@@ -107,7 +107,7 @@
     //new function, needed for proper information
     ChessBoard& getBoard() { return board; }
 
-    virtual bool canPhysicallyMove(int fromRow, int fromCol, int toRow, int toCol) = 0;
+    virtual bool canPhysicallyMove(int toRow, int toCol) = 0;
 
   };
 }

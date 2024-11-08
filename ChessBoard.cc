@@ -189,7 +189,7 @@ bool ChessBoard::isPieceUnderThreat(int row, int column)
         {
             ChessPiece *movingPiece = board.at(r).at(c);
             if(movingPiece != NULL){
-                if(movingPiece->canPhysicallyMove(r,c, row, column))
+                if(movingPiece->canPhysicallyMove(row, column))
                 {
                     return true;
                 }

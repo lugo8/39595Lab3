@@ -20,7 +20,7 @@ const char *BishopPiece::toString()
     }
 }
 
-bool BishopPiece::canPhysicallyMove(int fromRow, int fromCol, int toRow, int toColumn)
+bool BishopPiece::canPhysicallyMove(int toRow, int toColumn)
 {
     //Get state of the chess piece
     int row = getRow();

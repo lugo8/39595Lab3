@@ -20,7 +20,7 @@ const char *RookPiece::toString()
     }
 }
 
-bool RookPiece::canPhysicallyMove(int fromRow, int fromCol, int toRow, int toColumn)
+bool RookPiece::canPhysicallyMove(int toRow, int toColumn)
 {
     //Get state of the chess piece
     int row = getRow();
