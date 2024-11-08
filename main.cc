@@ -84,22 +84,26 @@ void test_part3()
 {
     using Student::ChessPiece;
     Student::ChessBoard sBoard(4, 4);
-    sBoard.createChessPiece(White, Bishop, 2, 0);
+    sBoard.createChessPiece(Black, Bishop, 0, 3);
+    sBoard.createChessPiece(Black, Rook, 0, 3);
+    sBoard.createChessPiece(White, Pawn, 2, 3);
     sBoard.createChessPiece(Black, Pawn, 3, 0);
-    sBoard.createChessPiece(White, Bishop, 2, 0);
-    sBoard.createChessPiece(Black, Rook, 2, 0);
-    sBoard.createChessPiece(Black, King, 3, 2);
-    sBoard.createChessPiece(White, King, 1, 1);
+    sBoard.createChessPiece(Black, King, 1, 2);
+    sBoard.createChessPiece(White, King, 1, 0);
 
     std::cout << sBoard.displayBoard().str();
 
-    sBoard.movePiece(1,1,0,2);
+    sBoard.movePiece(2,3,1,3);
+
+    std::cout << sBoard.displayBoard().str(); //FINAL STATE
+
+    sBoard.movePiece(1,2,0,1);    
 
     std::cout << sBoard.displayBoard().str();
 
-    sBoard.movePiece(2,0,0,0);
+    //sBoard.movePiece(2,0,0,0);
 
-    std::cout << sBoard.displayBoard().str(); //FINAL STATE IN ERROR
+    //std::cout << sBoard.displayBoard().str(); //FINAL STATE IN ERROR
 
     //sBoard.movePiece(0,2,1,2);//can move here WORKS
     //sBoard.movePiece(0,2,1,3);//can move here WORKS
@@ -108,11 +112,11 @@ void test_part3()
     //sBoard.movePiece(0,2,1,4);//cant move here MEMORY ERROR GONE
     //sBoard.movePiece(0,2,-1,2);//cant move here MEMORY ERROR GONE
     //sBoard.movePiece(0,2,0,4);//cant move here MEMORY ERROR GONE
-    sBoard.movePiece(0,2,0,3);//cant move here FAIL
+    //sBoard.movePiece(0,2,0,3);//cant move here FAIL
 
     //king is likely bocking its self durring threat detection, making a "shadow" of safety 
 
-    std::cout << sBoard.displayBoard().str(); //should be same, cant move there FAILLLLLL
+    //std::cout << sBoard.displayBoard().str(); //should be same, cant move there FAILLLLLL
 
     /*sBoard.movePiece(0,2,1,2);
 

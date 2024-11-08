@@ -86,6 +86,29 @@ bool KingPiece::canMoveToLocation(int toRow, int toColumn)
     {
         ChessBoard& board = getBoard();
 
+        for(int i = 0; i<3; i++){ //is the desired new location next to a king? if so, cant move
+            for(int j = 0; j < 3; j++){
+                //printf("working...\n");
+                //printf("i = %d, j = %d\n", i, j);
+                int relativeRow = (toRow-1)+i;
+                int relativeCol = (toColumn-1)+j;
+               // printf("relativeRow = %d, relativeCol = %d\n", relativeRow, relativeCol);
+                if(relativeCol<nCol && relativeCol >= 0 && relativeRow < nRow && relativeRow >= 0){
+                    //printf("inbounds...\n");
+                    Student::ChessPiece* kingFinder = board.getPiece(relativeRow, relativeCol);
+                    if(kingFinder != NULL){
+                        if(kingFinder->getType() == King){
+                            if(kingFinder->getColor() != colr){
+                                //printf("found opp king nearby...\n");
+                                //printf("i = %d, j = %d\n", i, j);
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         
         Student::ChessPiece* target = board.getPiece(toRow, toColumn);
 
